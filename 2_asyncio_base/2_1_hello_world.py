@@ -1,4 +1,7 @@
+import asyncio
+
+
 async def my_coroutine() -> None:
     print('Hello world!')
 
-my_coroutine()
+asyncio.run(my_coroutine())
