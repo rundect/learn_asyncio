@@ -3,13 +3,14 @@ from util import delay
 
 
 async def main():
-    task = asyncio.create_task(delay(10))
+    delay_task = asyncio.create_task(delay(2))
+    timeout = 1
     try:
-        result = await asyncio.wait_for(asyncio.shield(task), 5)
+        result = await asyncio.wait_for(asyncio.shield(delay_task), timeout)
         print(result)
     except asyncio.exceptions.TimeoutError:
-        print("Задача заняла более 5 с, скоро она закончится!")
-        result = await task
+        print(f"Задача заняла более {timeout} с, скоро она закончится!")
+        result = await delay_task
         print(result)
 
 

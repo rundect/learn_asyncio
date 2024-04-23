@@ -1,6 +1,6 @@
 import asyncio
 
-from decorator import async_timed
+from util import async_timed
 
 
 @async_timed()
@@ -13,8 +13,8 @@ async def delay(delay_seconds: int) -> int:
 
 @async_timed()
 async def main():
-    task_one = asyncio.create_task(delay(2))
-    task_two = asyncio.create_task(delay(3))
+    task_one = asyncio.create_task(delay(1))
+    task_two = asyncio.create_task(delay(2))
     await task_one
     await task_two
 

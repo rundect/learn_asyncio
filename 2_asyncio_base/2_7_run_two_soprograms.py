@@ -7,13 +7,18 @@ async def add_one(number: int) -> int:
 
 
 async def hello_world_message() -> str:
+    print('Before delay')
     await delay(1)
+    print('After delay')
     return 'Hello World!'
 
 
 async def main() -> None:
+    print('Before first await')
     message = await hello_world_message()
+    print('Before second await')
     one_plus_one = await add_one(1)
+    print('After second await')
     print(one_plus_one)
     print(message)
 
