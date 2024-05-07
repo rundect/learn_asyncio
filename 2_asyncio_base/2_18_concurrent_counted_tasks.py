@@ -1,5 +1,5 @@
 import asyncio
-from util import delay, async_timed
+from util import async_timed
 
 
 @async_timed()

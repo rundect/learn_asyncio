@@ -5,18 +5,19 @@ from asyncio import AbstractEventLoop
 
 
 async def echo(
-        connection: socket,
-        loop: AbstractEventLoop
+    connection: socket,
+    loop: AbstractEventLoop
 ) -> None:
-    while data := await loop.sock_recv(connection, 1024):
-        try:
+    try:
+        while data := await loop.sock_recv(connection, 1024):
+            print('получены данные!')
             if data == b'boom\r\n':
                 raise Exception("Неожиданная ошибка сети")
             await loop.sock_sendall(connection, data)
-        except Exception as ex:
-            logging.exception(ex)
-        finally:
-            connection.close()
+    except Exception as ex:
+        logging.exception(ex)
+    finally:
+        connection.close()
 
 
 async def listen_for_connection(
